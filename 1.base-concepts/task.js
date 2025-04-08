@@ -1,23 +1,35 @@
 "use strict";
 
 function solveEquation(a, b, c) {
-  const d = Math.pow(b, 2) - 4 * a * c; // Вычисляем дискриминант
+
   const roots = [];
 
-  if (d < 0) {
-    // Корней нет
+  // Проверяем, что входные данные являются числами
+  if (typeof a !== "number" || typeof b !== "number" || typeof c !== "number") {
     return roots;
-  } else if (d === 0) {
-    // Один корень
+  }
+
+  const d = Math.pow(b, 2) - 4 * a * c; // Вычисляем дискриминант
+
+
+
+  if (Number.isNaN(d)) {
+    return roots;
+  }
+
+  // Если дискриминант равен 0, то один корень
+  if (d === 0) {
     const x = -b / (2 * a);
     roots.push(x);
-  } else {
-    // Два корня
+  } 
+  // Если дискриминант больше 0, то два корня
+  else if (d > 0) {
     const x1 = (-b + Math.sqrt(d)) / (2 * a);
     const x2 = (-b - Math.sqrt(d)) / (2 * a);
     roots.push(x1, x2);
   }
 
+  // Если корней нет, возвращаем пустой массив
   return roots;
 }
 
